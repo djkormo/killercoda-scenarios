@@ -3,7 +3,7 @@
 Lets try to control remainning time to reset our sandbox
 
 <pre>
-58 min root@master
+58 min root@controlplane
 </pre>
 
 It means that you have only 58 minutes to finish the lab!!
@@ -52,6 +52,8 @@ Or use calico
 
 `kubectl apply -f https://docs.projectcalico.org/v3.11/getting-started/kubernetes/installation/hosted/kubernetes-datastore/calico-networking/1.7/calico.yaml`{{execute}}
 
+`kubectl apply -f https://projectcalico.docs.tigera.io/manifests/tigera-operator.yaml`{{execute}}
+`kubectl apply -f https://projectcalico.docs.tigera.io/manifests/custom-resources.yaml`{{execute}}
 
 Or flannel
 
