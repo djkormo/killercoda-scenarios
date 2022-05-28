@@ -1,6 +1,6 @@
 Extending pods configuration
 
-All objects should by deployed into alpha namespace
+All objects should by deployed into **alpha** namespace
 
 **1.Create a pod named postgresql using image postgres:12.4 on port 5432.**
 

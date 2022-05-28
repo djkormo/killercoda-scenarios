@@ -4,7 +4,7 @@ Placing pods on proper nodes
 
 <pre>
 Name:               controlplane
-Taints:             node-role.kubernetes.io/master:NoSchedule
+Taints:             node-role.kubernetes.io/control-plane:NoSchedule
 Name:               node01
 Taints:             <none>
 </pre>
@@ -12,9 +12,9 @@ Taints:             <none>
 `kubectl get nodes --show-labels`{{execute}}
 
 <pre>
-NAME           STATUS   ROLES    AGE     VERSION   LABELS
-controlplane   Ready    master   3m24s   v1.19.0   beta.kubernetes.io/arch=amd64,beta.kubernetes.io/os=linux,kubernetes.io/arch=amd64,kubernetes.io/hostname=controlplane,kubernetes.io/os=linux,node-role.kubernetes.io/master=,whereareyou=master
-node01         Ready    <none>   2m51s   v1.19.0   beta.kubernetes.io/arch=amd64,beta.kubernetes.io/os=linux,kubernetes.io/arch=amd64,kubernetes.io/hostname=node01,kubernetes.io/os=linux,whereareyou=worker
+NAME           STATUS   ROLES           AGE   VERSION   LABELS
+controlplane   Ready    control-plane   19d   v1.24.0   beta.kubernetes.io/arch=amd64,beta.kubernetes.io/os=linux,kubernetes.io/arch=amd64,kubernetes.io/hostname=controlplane,kubernetes.io/os=linux,node-role.kubernetes.io/control-plane=,node.kubernetes.io/exclude-from-external-load-balancers=,whereareyou=master
+node01         Ready    <none>          19d   v1.24.0   beta.kubernetes.io/arch=amd64,beta.kubernetes.io/os=linux,kubernetes.io/arch=amd64,kubernetes.io/hostname=node01,kubernetes.io/os=linux,whereareyou=worker
 </pre>
 
 All objects should by deployed into **beta** namespace.
@@ -78,7 +78,6 @@ CHECK
 **4.Create a daemonset named nginx-ds using image nginx:1.18.0 on port 80 add 100m CPU request and 500Mi memory request and 200m CPU limit and 700Mi memory limit. Running on all cluster nodes.**
 
 Remember to add resources
-
 
 CHECK
 

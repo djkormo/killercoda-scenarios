@@ -1,6 +1,6 @@
 Scaling deployments 
 
-All objects should by deployed into alpha namespace
+All objects should by deployed into **alpha** namespace
 
 **1.Create a deploy named nginx-deployment using image nginx:1.18.0 on port 80. Record the change**
 
