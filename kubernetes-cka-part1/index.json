@@ -65,6 +65,11 @@
           "chmod": "+x"
         },
         {
+          "file": "k8s-downgrade.sh",
+          "target": "/usr/local/bin/",
+          "chmod": "+x"
+        },
+        {
           "file": ".bashrc",
           "target": "/root/"
         }
