@@ -1,7 +1,7 @@
 #!/bin/bash
 echo off
 apt-get purge kubeadm kubectl kubelet kubernetes-cni kube* -y
-apt-get update && apt-get install kubeadm=1.23.1-00 kubelet=1.23.1-00 -y --allow-downgrades >> /var/log/install
+apt-get update && apt-get install kubeadm=1.23.1-00 kubelet=1.23.1-00 kubectl=1.23.1-00  -y --allow-downgrades >> /var/log/install
 systemctl stop kubelet >> /var/log/install
 kubectl delete node node01
 kubeadm reset --force

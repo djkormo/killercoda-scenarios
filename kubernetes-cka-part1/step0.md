@@ -117,6 +117,10 @@ CHECK
 
 CHECK
 
+List pods in kube-system namespace
+`kubectl get pod -n kube-system`{{execute}}
+
+
 To continue you should have 1.23 Kubernetes cluster with two nodes (ready)
 
 **To move to the next step make sure to have all checks with "done"**
