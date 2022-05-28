@@ -26,6 +26,15 @@ For example, for following command will initialise the master with the latest ve
 
 `kubeadm init --kubernetes-version $(kubeadm version -o short) --pod-network-cidr 192.168.0.0/16`{{execute}}
 
+If you see the error
+<pre>
+[ERROR NumCPU]: the number of available CPUs 1 is less than the required 2   
+</pre>
+
+Add --ignore-preflight-errors=NumCPU
+
+`kubeadm init --kubernetes-version $(kubeadm version -o short) --pod-network-cidr 192.168.0.0/16 --ignore-preflight-errors=NumCPU`{{execute}} 
+
 Move cluster config file to your home directory.
 
 `mkdir -p $HOME/.kube
@@ -91,7 +100,7 @@ Example objects in default namespace
 
 CHECK
 
-`kubectl get nodes | grep 1.23.0 | grep Ready | wc -l | grep 2 && echo "done"`{{execute}}
+`kubectl get nodes | grep 1.23 | grep Ready | wc -l | grep 2 && echo "done"`{{execute}}
 
 CHECK
 
