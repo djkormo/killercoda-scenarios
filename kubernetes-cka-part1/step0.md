@@ -37,8 +37,8 @@ Add --ignore-preflight-errors=NumCPU
 
 Move cluster config file to your home directory.
 
-`mkdir -p $HOME/.kube
-sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+`mkdir -p $HOME/.kube &&
+sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config &&
 sudo chown $(id -u):$(id -g) $HOME/.kube/config`{{execute}}
 
 Initialize cluster networking:
