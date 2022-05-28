@@ -4,7 +4,7 @@ apt-get update
 
 # Start Kubernetes
 echo "Starting cluster"
-launch.sh
+#launch.sh
 echo "done" >> /opt/.clusterstarted
 date >> /opt/.clusterstarted
 

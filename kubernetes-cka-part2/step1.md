@@ -1,6 +1,8 @@
 
+**Step 1**
 
 **When all nodes are ready and version v1.24.0** 
+
 
 <pre>
 NAME     STATUS   ROLES    AGE   VERSION

@@ -1,3 +1,5 @@
+**Step 4**
+
 Scaling deployments 
 
 All objects should by deployed into **alpha** namespace

@@ -1,3 +1,5 @@
+**Step 5**
+
 Placing pods on proper nodes
 
 `kubectl describe nodes | egrep "Name:|Taints:"`{{execute}}

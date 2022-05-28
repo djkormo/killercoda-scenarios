@@ -1,3 +1,6 @@
+**Step 2**
+
+
 Extending pods configuration
 
 All objects should by deployed into **alpha** namespace
