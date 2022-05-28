@@ -1,16 +1,16 @@
-Upgrade cluster from version 1.18 to 1.19
+Upgrade cluster from version 1.23 to 1.24
 
 Show list of cluster nodes
 
 `kubectl get nodes`{{execute HOST1}}
 
-Here we have cluster with 1.18 version
+Here we have cluster with 1.23 version
 
 List all of objects in default namespace
 
-`kubectl get all -o wide`{{execute HOST1}}
+`kubectl get all -o wide`{{execute}}
 
-Out goal is to have running 1.19 version cluster.
+Out goal is to have running 1.24 version cluster.
 
 `kubectl version --short 
 kubeadm version -o short
@@ -19,7 +19,7 @@ kubelet --version
 
 Update packages
 
-`apt-get update`{{execute HOST1}}
+`apt-get update`{{execute}}
 
 Install specific version of  kubeadm, kubelet and kubectl
 
@@ -109,20 +109,20 @@ node/node01 evicted
 
 **Look what deployment and pods are on our cluster. Preserve them**
 
-`ssh node01`{{execute HOST1}}
+`ssh node01`{{execute}}
 
 On node01 node
 
 `apt-get update`{{execute}}
 
-`apt-get install kubelet=1.14.0-00 -y `{{execute}}
+`apt-get install kubelet=1.24.0-00 -y `{{execute}}
 
 Now we should restart kubelet
 `systemctl restart kubelet`{{execute}}
 
 
 
-On master node
+On controlplane node
 
 `kubectl uncordon node01`{{execute}}
 
@@ -136,7 +136,7 @@ What we have in alone namespace
 
 CHECK
 
-`kubectl get nodes | grep 1.24.0 | grep Ready | wc -l | grep 2 && echo "done"`{{execute}}
+`kubectl get nodes | grep 1.24 | grep Ready | wc -l | grep 2 && echo "done"`{{execute}}
 
 `kubectl get pod alone-pod web-server -n alone | grep Running |wc -l | grep 2 && echo "done"`{{execute}}
 
