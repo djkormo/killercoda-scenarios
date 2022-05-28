@@ -1,14 +1,15 @@
 #!/bin/bash
 echo off
-#apt-get purge kubeadm kubectl kubelet kubernetes-cni kube* -y
-#apt-get update && apt-get install kubeadm=1.23.7-00 kubelet=1.23.7-00 kubectl=1.23.7-00  -y --allow-downgrades >> /var/log/install
-#systemctl stop kubelet >> /var/log/install
-#kubectl delete node node01
-#kubeadm reset --force
 
-#rm ~/.kube/config
-#ssh root@node01 "apt-get update && apt-get install kubeadm=1.23.7-00 kubelet=1.23.7-00 -y  --allow-downgrades && systemctl stop kubelet"  >> /var/log/install
-#ssh root@node01 "kubeadm reset --force"  >> /var/log/install
+apt-get purge kubeadm kubectl kubelet kubernetes-cni kube* -y
+apt-get update && apt-get install kubeadm=1.23.7-00 kubelet=1.23.7-00 kubectl=1.23.7-00  -y --allow-downgrades >> /var/log/install
+systemctl stop kubelet >> /var/log/install
+kubectl delete node node01
+kubeadm reset --force
+rm ~/.kube/config
+
+ssh root@node01 "apt-get update && apt-get install kubeadm=1.23.7-00 kubelet=1.23.7-00 -y  --allow-downgrades && systemctl stop kubelet"  >> /var/log/install
+ssh root@node01 "kubeadm reset --force"  >> /var/log/install
 
 # Start Kubernetes
 echo "Starting cluster"
