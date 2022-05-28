@@ -59,7 +59,11 @@ Use kuberouter
 
 `kubectl apply -f https://raw.githubusercontent.com/cloudnativelabs/kube-router/master/daemonset/kubeadm-kuberouter.yaml`{{execute}}
 
-Or use calico
+or canal
+
+`kubectl apply -f https://projectcalico.docs.tigera.io/manifests/canal.yaml`{{execute}}
+
+Or calico
 
 `kubectl apply -f https://docs.projectcalico.org/v3.11/getting-started/kubernetes/installation/hosted/kubernetes-datastore/calico-networking/1.7/calico.yaml`{{execute}}
 
