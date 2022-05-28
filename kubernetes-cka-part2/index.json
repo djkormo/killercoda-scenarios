@@ -55,27 +55,15 @@
     },
     "assets": {
       "host01": [
-        {
-          "file": "wait.sh",
-          "target": "/usr/local/bin/",
-          "chmod": "+x"
-        },
+
         {
           "file": ".bashrc",
           "target": "/root/"
-        },
-        {
-          "file": "install-krew.sh",
-          "target": "/usr/local/bin/",
-          "chmod": "+x"
         }
+
       ],
       "host02": [
-        {
-          "file": "wait.sh",
-          "target": "/usr/local/bin/",
-          "chmod": "+x"
-        },
+
         {
           "file": ".bashrc",
           "target": "/root/"
