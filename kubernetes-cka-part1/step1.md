@@ -1,8 +1,10 @@
+**Step 0**
+
 Upgrade cluster from version 1.23 to 1.24
 
 Show list of cluster nodes
 
-`kubectl get nodes`{{execute HOST1}}
+`kubectl get nodes`{{execute}}
 
 Here we have cluster with 1.23 version
 
@@ -12,8 +14,8 @@ List all of objects in default namespace
 
 Out goal is to have running 1.24 version cluster.
 
-`kubectl version --short 
-kubeadm version -o short
+`kubectl version --short &&
+kubeadm version -o short &&
 kubelet --version
 `{{execute}}
 
@@ -23,15 +25,15 @@ Update packages
 
 Install specific version of  kubeadm, kubelet and kubectl
 
-`apt-get install kubeadm=1.24.0-00 kubectl=1.24.0-00 kubelet=1.24.0-00 -y`{{execute HOST1}}
+`apt-get install kubeadm=1.24.0-00 kubectl=1.24.0-00 kubelet=1.24.0-00 -y`{{execute}}
 
 What upgrade plan is possible ?
 
-`kubeadm upgrade plan`{{execute HOST1}}
+`kubeadm upgrade plan`{{execute}}
 
 Let's upgrade (remember to confirm by pressing y key) 
 
-`kubeadm upgrade apply v1.24.0`{{execute HOST1}}
+`kubeadm upgrade apply v1.24.0`{{execute}}
 
 Let's see the cluster nodes
 
@@ -44,7 +46,7 @@ Now we have master node with 1.24 version and worker node with 1.23
 
 The first thing is to detach worker node from kubernetes cluster.
 
-`kubectl drain node01`{{execute HOST1}}
+`kubectl drain node01`{{execute}}
 
 <pre>
 node/node01 cordoned

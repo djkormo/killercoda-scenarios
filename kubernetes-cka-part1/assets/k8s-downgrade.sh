@@ -3,7 +3,7 @@
 echo "test"
 
 apt-get update && apt-get install kubeadm=1.23.1-00 kubelet=1.23.1-00 -y --allow-downgrades
-systemctl restart kubelet
+systemctl stop kubelet
 kubeadm reset --force
 rm ~/.kube/config
 

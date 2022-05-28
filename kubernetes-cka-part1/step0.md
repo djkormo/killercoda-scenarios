@@ -1,3 +1,5 @@
+**Step 0**
+
 **Install cluster with kubeadm** 
 
 Lets try to control remainning time to reset our sandbox
