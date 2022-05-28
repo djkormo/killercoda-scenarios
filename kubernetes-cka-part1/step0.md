@@ -41,8 +41,17 @@ Move cluster config file to your home directory.
 sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config &&
 sudo chown $(id -u):$(id -g) $HOME/.kube/config`{{execute}}
 
-Initialize cluster networking:
 
+No you can check your access to k8s cluster
+
+`kubectl get nodes`{{execute}}
+
+<pre>
+NAME           STATUS   ROLES                  AGE     VERSION
+controlplane   Ready    control-plane,master   3m10s   v1.23.1
+</pre>
+
+Initialize cluster networking:
 
 Use kuberouter
 
@@ -73,7 +82,7 @@ or weave
 On worker node (node01) 
 execute kubeadm join .... command.
 
-Return to master (controlplane) node
+Return to controlplane node
 
 `exit`{{copy}}
 
