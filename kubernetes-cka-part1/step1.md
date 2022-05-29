@@ -25,7 +25,7 @@ Update packages
 
 Install specific version of  kubeadm, kubelet and kubectl
 
-`apt-get install kubeadm=1.24.0-00 kubectl=1.24.0-00 kubelet=1.24.0-00 -y`{{execute}}
+`apt-get install kubeadm=1.24.1-00 kubectl=1.24.1-00 kubelet=1.24.1-00 -y`{{execute}}
 
 What upgrade plan is possible ?
 
@@ -33,11 +33,19 @@ What upgrade plan is possible ?
 
 Let's upgrade (remember to confirm by pressing y key) 
 
-`kubeadm upgrade apply v1.24.0`{{execute}}
+`kubeadm upgrade apply v1.24.1`{{execute}}
+
+In case of trouble with kubelet configuration (node controleplane is notReady)
+
+`cat /var/lib/kubelet/kubeadm-flags.env` {{execute}}
+
+Remove --network-plugin=cni according to issue
+
+https://github.com/kubernetes/website/issues/33640
 
 Let's see the cluster nodes
 
-`kubectl get nodes`{{execute HOST1}}
+`kubectl get nodes`{{execute}}
 
 Now we have master node with 1.24 version and worker node with 1.23
 
@@ -117,7 +125,7 @@ On node01 node
 
 `apt-get update`{{execute}}
 
-`apt-get install kubelet=1.24.0-00 -y `{{execute}}
+`apt-get install kubelet=1.24.1-00 -y `{{execute}}
 
 Now we should restart kubelet
 `systemctl restart kubelet`{{execute}}
