@@ -65,12 +65,12 @@
           "chmod": "+x"
         },
         {
-          "file": "install-controlplane.sh",
+          "file": "install_controlplane.sh",
           "target": "/usr/local/bin/",
           "chmod": "+x"
         },
         {
-          "file": "install-worker.sh",
+          "file": "install_worker.sh",
           "target": "/usr/local/bin/",
           "chmod": "+x"
         },
