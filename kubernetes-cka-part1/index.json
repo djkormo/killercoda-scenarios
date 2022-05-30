@@ -65,6 +65,16 @@
           "chmod": "+x"
         },
         {
+          "file": "install-controlplane.sh",
+          "target": "/usr/local/bin/",
+          "chmod": "+x"
+        },
+        {
+          "file": "install-worker.sh",
+          "target": "/usr/local/bin/",
+          "chmod": "+x"
+        },
+        {
           "file": "k8s-downgrade.sh",
           "target": "/usr/local/bin/",
           "chmod": "+x"
