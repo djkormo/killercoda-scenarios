@@ -83,6 +83,13 @@
           "file": ".bashrc",
           "target": "/root/"
         }
+      ],
+      "host2": [
+        {
+          "file": "install_worker.sh",
+          "target": "/usr/local/bin/",
+          "chmod": "+x"
+        }
       ]
     }
   },
