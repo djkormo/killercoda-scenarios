@@ -24,7 +24,7 @@ Let's download images
 
 `kubeadm config images pull --kubernetes-version $(kubeadm version -o short) `{{execute}}
 
-For example, for following command will initialise the master with the latest version installed.
+For example, for following command will initialise the control plane with the latest version installed.
 
 `kubeadm init --kubernetes-version $(kubeadm version -o short) --pod-network-cidr 192.168.0.0/16`{{execute}}
 
@@ -55,25 +55,11 @@ controlplane   Ready    control-plane,master   3m10s   v1.23.1
 
 Initialize cluster networking:
 
-Use kuberouter
 
-`kubectl apply -f https://raw.githubusercontent.com/cloudnativelabs/kube-router/master/daemonset/kubeadm-kuberouter.yaml`{{execute}}
-
-or canal
-
-`kubectl apply -f https://projectcalico.docs.tigera.io/manifests/canal.yaml`{{execute}}
-
-Or calico
+Calico CNI
 
 `kubectl apply -f https://raw.githubusercontent.com/djkormo/killercoda-scenarios/main/kubernetes-cka-part1/calico.yaml`{{execute}}
 
-Or flannel
-
-`kubectl apply -f https://github.com/coreos/flannel/raw/master/Documentation/kube-flannel.yml`{{execute}}
-
-or weave
-
-`kubectl apply -f "https://cloud.weave.works/k8s/net?k8s-version=$(kubectl version | base64 | tr -d '\n')"`{{execute}}
 
  Create an example deployment:
 

@@ -17,6 +17,7 @@ set -e
 #fi
 
 KUBE_VERSION=1.23.6
+KUBE_VERSION=1.22.10
 
 
 ### setup terminal

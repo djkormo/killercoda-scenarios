@@ -37,7 +37,7 @@ Let's upgrade (remember to confirm by pressing y key)
 
 In case of trouble with kubelet configuration (node controleplane is notReady)
 
-`cat /var/lib/kubelet/kubeadm-flags.env` {{execute}}
+`cat /var/lib/kubelet/kubeadm-flags.env`{{execute}}
 
 Remove --network-plugin=cni according to issue
 
