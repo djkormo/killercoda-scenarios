@@ -22,7 +22,7 @@ The Kubernetes nodes are not configured. If you want to configure the nodes then
 
 Let's download images 
 
-`kubeadm config images pull --kubernetes-version $(kubeadm version -o short)`{{execute}}
+`kubeadm config images pull --kubernetes-version $(kubeadm version -o short) --cri-socket=unix:///var/run/crio/crio.sock`{{execute}}
 
 For example, for following command will initialise the master with the latest version installed.
 
