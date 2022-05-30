@@ -65,10 +65,7 @@ or canal
 
 Or calico
 
-`kubectl apply -f https://docs.projectcalico.org/v3.11/getting-started/kubernetes/installation/hosted/kubernetes-datastore/calico-networking/1.7/calico.yaml`{{execute}}
-
-`kubectl apply -f https://projectcalico.docs.tigera.io/manifests/tigera-operator.yaml`{{execute}}
-`kubectl apply -f https://projectcalico.docs.tigera.io/manifests/custom-resources.yaml`{{execute}}
+`kubectl apply -f https://raw.githubusercontent.com/djkormo/killercoda-scenarios/main/kubernetes-cka-part1/calico.yaml`{{execute}}
 
 Or flannel
 
@@ -77,7 +74,6 @@ Or flannel
 or weave
 
 `kubectl apply -f "https://cloud.weave.works/k8s/net?k8s-version=$(kubectl version | base64 | tr -d '\n')"`{{execute}}
-
 
  Create an example deployment:
 

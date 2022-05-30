@@ -84,7 +84,7 @@
           "target": "/root/"
         }
       ],
-      "host2": [
+      "host02": [
         {
           "file": "install_worker.sh",
           "target": "/usr/local/bin/",
