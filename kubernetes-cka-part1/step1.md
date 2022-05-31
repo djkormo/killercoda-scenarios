@@ -1,6 +1,6 @@
 **Step 0**
 
-Upgrade cluster from version 1.23 to 1.24
+Upgrade cluster from version 1.22.x to 1.23.y
 
 Show list of cluster nodes
 
@@ -12,7 +12,7 @@ List all of objects in default namespace
 
 `kubectl get all -o wide`{{execute}}
 
-Out goal is to have running 1.24 version cluster.
+Out goal is to have running 1.23.x version cluster.
 
 `kubectl version --short &&
 kubeadm version -o short &&
@@ -25,7 +25,7 @@ Update packages
 
 Install specific version of  kubeadm, kubelet and kubectl
 
-`apt-get install kubeadm=1.24.1-00 kubectl=1.24.1-00 kubelet=1.24.1-00 -y`{{execute}}
+`apt-get install kubeadm=1.23.6-00 kubectl=1.23.6-00 kubelet=1.23.6-00 -y`{{execute}}
 
 What upgrade plan is possible ?
 
@@ -33,7 +33,7 @@ What upgrade plan is possible ?
 
 Let's upgrade (remember to confirm by pressing y key) 
 
-`kubeadm upgrade apply v1.24.1`{{execute}}
+`kubeadm upgrade apply v1.23.6`{{execute}}
 
 In case of trouble with kubelet configuration (node controleplane is notReady)
 
@@ -47,12 +47,12 @@ Let's see the cluster nodes
 
 `kubectl get nodes`{{execute}}
 
-Now we have master node with 1.24 version and worker node with 1.23
+Now we have master node with 1.23 version and worker node with 1.22
 
 **Look what deployment and pods are on our cluster. Preserve them**
 
 
-The first thing is to detach worker node from kubernetes cluster.
+The first thing is to detach worker node01 from kubernetes cluster.
 
 `kubectl drain node01`{{execute}}
 
@@ -85,7 +85,7 @@ Non-terminated Pods:          (8 in total)
 **Look what deployment and pods are on our cluster. Preserve them**
 
 
-`kubectl drain node01 --ignore-daemonsets`{{execute HOST1}}
+`kubectl drain node01 --ignore-daemonsets`{{execute}}
 
 <pre>
 node/node01 already cordoned
@@ -125,7 +125,7 @@ On node01 node
 
 `apt-get update`{{execute}}
 
-`apt-get install kubelet=1.24.1-00 -y `{{execute}}
+`apt-get install kubelet=1.23.6-00 -y `{{execute}}
 
 Now we should restart kubelet
 `systemctl restart kubelet`{{execute}}
@@ -146,12 +146,12 @@ What we have in alone namespace
 
 CHECK
 
-`kubectl get nodes | grep 1.24 | grep Ready | wc -l | grep 2 && echo "done"`{{execute}}
+`kubectl get nodes | grep 1.23 | grep Ready | wc -l | grep 2 && echo "done"`{{execute}}
 
 `kubectl get pod alone-pod web-server -n alone | grep Running |wc -l | grep 2 && echo "done"`{{execute}}
 
 CHECK
 
-To continue you should have 1.24 Kubernetes cluster with two nodes (ready)
+To continue you should have 1.23 Kubernetes cluster with two nodes (ready)
 
 **To move to the next step make sure to have all checks with "done"**

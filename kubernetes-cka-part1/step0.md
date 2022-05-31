@@ -50,7 +50,7 @@ No you can check your access to k8s cluster
 
 <pre>
 NAME           STATUS   ROLES                  AGE     VERSION
-controlplane   Ready    control-plane,master   3m10s   v1.23.1
+controlplane   Ready    control-plane,master   3m10s   v1.23.6
 </pre>
 
 Initialize cluster networking:
@@ -99,7 +99,7 @@ Example objects in default namespace
 
 CHECK
 
-`kubectl get nodes | grep 1.23 | grep Ready | wc -l | grep 2 && echo "done"`{{execute}}
+`kubectl get nodes | grep 1.22 | grep Ready | wc -l | grep 2 && echo "done"`{{execute}}
 
 CHECK
 
@@ -107,6 +107,6 @@ List pods in kube-system namespace
 `kubectl get pod -n kube-system`{{execute}}
 
 
-To continue you should have 1.23 Kubernetes cluster with two nodes (ready)
+To continue you should have 1.22.x Kubernetes cluster with two nodes (ready)
 
 **To move to the next step make sure to have all checks with "done"**
