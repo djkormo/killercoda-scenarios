@@ -149,6 +149,8 @@ systemctl enable containerd
 systemctl restart containerd
 systemctl enable kubelet && systemctl start kubelet
 
+rm -rf ~/.kube/config
+
 
 ### init k8s
 #rm /root/.kube/config || true
