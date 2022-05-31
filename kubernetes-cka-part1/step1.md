@@ -104,8 +104,11 @@ error: cannot delete Pods not managed by ReplicationController, ReplicaSet, Job,
 Preserve the alone pods
 
 `kubectl get pod/alone-pod -n alone -o yaml >pod-alone-alone-pod.yaml`{{execute}}
+
 `kubectl get pod/web-server -n alone -o yaml >pod-alone-web-server.yaml`{{execute}}
+
 `kubectl drain node01 --ignore-daemonsets --force `{{execute}}
+
 
 <pre>
 node/node01 already cordoned
@@ -147,6 +150,10 @@ On controlplane node
 What we have in alone namespace
 
 `kubectl get all -n alone`{{execute}}} 
+
+If nothing deploy missing object to our cluster
+
+`kubectl apply -f . -n alone`{{execute}}
 
 CHECK
 
