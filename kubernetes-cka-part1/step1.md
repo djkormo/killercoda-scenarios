@@ -6,7 +6,7 @@ Show list of cluster nodes
 
 `kubectl get nodes`{{execute}}
 
-Here we have cluster with 1.23 version
+Here we have cluster with 1.22 version
 
 List all of objects in default namespace
 
@@ -26,6 +26,10 @@ Update packages
 Install specific version of  kubeadm, kubelet and kubectl
 
 `apt-get install kubeadm=1.23.6-00 kubectl=1.23.6-00 kubelet=1.23.6-00 -y`{{execute}}
+
+If some of the packages is hold add '--allow-change-held-packages'
+
+`apt-get install kubeadm=1.23.6-00 kubectl=1.23.6-00 kubelet=1.23.6-00 -y --allow-change-held-packages`{{execute}}
 
 What upgrade plan is possible ?
 
@@ -101,7 +105,7 @@ Preserve the alone pods
 
 `kubectl get pod/alone-pod -n alone -o yaml >pod-alone-alone-pod.yaml`{{execute}}
 `kubectl get pod/web-server -n alone -o yaml >pod-alone-web-server.yaml`{{execute}}
-`kubectl drain node01 --ignore-daemonsets --force `{{execute HOST1}}
+`kubectl drain node01 --ignore-daemonsets --force `{{execute}}
 
 <pre>
 node/node01 already cordoned

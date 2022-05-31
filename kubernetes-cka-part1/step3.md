@@ -45,8 +45,8 @@ To use API 3.x set ETCDCTL_API variable
 `export ETCDCTL_API=3 
 etcdctl version`{{execute}}
 <pre>
-etcdctl version: 3.2.17
-API version: 3.2
+etcdctl version: 3.5.1
+API version: 3.5
 </pre>
 
 **Change /var/lib/etcd to /var/lib/etcd-backup while restoring** 
