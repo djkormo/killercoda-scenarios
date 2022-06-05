@@ -37,8 +37,8 @@ API version: 3.5
 
 To use API 3.x set ETCDCTL_API variable
 
-`export ETCDCTL_API=3 
-etcdctl version`{{execute}}
+`export ETCDCTL_API=3`{{execute}}
+`etcdctl version`{{execute}}
 <pre>
 etcdctl version: 3.5.1
 API version: 3.5
@@ -99,7 +99,6 @@ endpoints/kubernetes     172.17.0.65:6443                      12m
 endpoints/my-nginx-svc   10.5.1.6:80,10.5.1.7:80,10.5.1.8:80   12m
 
 </pre>
-
 
 
 Checking status of backup

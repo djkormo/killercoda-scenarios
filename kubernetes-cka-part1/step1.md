@@ -51,7 +51,7 @@ Let's see the cluster nodes
 
 `kubectl get nodes`{{execute}}
 
-Now we have master node with 1.23 version and worker node with 1.22
+Now we have control plane node with 1.23 version and worker node with 1.22
 
 **Look what deployment and pods are on our cluster. Preserve them**
 
@@ -86,7 +86,7 @@ Non-terminated Pods:          (8 in total)
   kube-system                 coredns-f9fd979d6-b2qsx      100m (5%)     0 (0%)      70Mi (1%)        170Mi (4%)     5m28s
 </pre>
 
-**Look what deployment and pods are on our cluster. Preserve them**
+**Look what deployment and pods are on our cluster. Preserve them. Look at alone namespace**
 
 
 `kubectl drain node01 --ignore-daemonsets`{{execute}}
@@ -124,7 +124,7 @@ pod/coredns-f9fd979d6-hjks6 evictedpod/alone-pod evicted
 node/node01 evicted
 </pre>
 
-**Look what deployment and pods are on our cluster. Preserve them**
+**Look what deployment and pods are on our cluster. Preserve them. Look at alone namespace**
 
 `ssh node01`{{execute}}
 
