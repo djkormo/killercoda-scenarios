@@ -45,6 +45,7 @@ crictl rm --force $(crictl ps -a -q) || true
 apt-mark unhold kubelet kubeadm kubectl kubernetes-cni || true
 apt-get remove -y docker.io containerd kubelet kubeadm kubectl kubernetes-cni || true
 apt-get autoremove -y
+rm -rf /etc/cni/net.d
 systemctl daemon-reload
 
 
