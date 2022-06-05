@@ -27,7 +27,7 @@ Install specific version of  kubeadm, kubelet and kubectl
 
 `apt-get install kubeadm=1.23.6-00 kubectl=1.23.6-00 kubelet=1.23.6-00 -y`{{execute}}
 
-If some of the packages is hold add '--allow-change-held-packages'
+If some of the packages is hold add **'--allow-change-held-packages'**
 
 `apt-get install kubeadm=1.23.6-00 kubectl=1.23.6-00 kubelet=1.23.6-00 -y --allow-change-held-packages`{{execute}}
 

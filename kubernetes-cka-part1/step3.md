@@ -42,8 +42,10 @@ Let's examine etcd configuration
 
 To use API 3.x set ETCDCTL_API variable
 
-`export ETCDCTL_API=3 
-etcdctl version`{{execute}}
+`export ETCDCTL_API=3 `{{execute}}
+
+`etcdctl version`{{execute}}
+
 <pre>
 etcdctl version: 3.5.1
 API version: 3.5
@@ -64,6 +66,15 @@ use command in such a way
   --initial-cluster-token etcd-cluster-1 \
   snapshot restore filename
   `{{copy}}
+
+After running proper command you should see something like this:
+
+<pre>
+2022-06-05T20:45:10Z    info    snapshot/v3_snapshot.go:251     restoring snapshot      {"path": "/opt/etcd-backup.db", "wal-dir": "/var/lib/etcd-backup/member/wal", "data-dir": "/var/lib/etcd-backup", "snap-dir": "/var/lib/etcd-backup/member/snap", "stack": "go.etcd.io/etcd/etcdutl/v3/snapshot.(*v3Manager).Restore\n\t/tmp/etcd-release-3.5.1/etcd/release/etcd/etcdutl/snapshot/v3_snapshot.go:257\ngo.etcd.io/etcd/etcdutl/v3/etcdutl.SnapshotRestoreCommandFunc\n\t/tmp/etcd-release-3.5.1/etcd/release/etcd/etcdutl/etcdutl/snapshot_command.go:147\ngo.etcd.io/etcd/etcdctl/v3/ctlv3/command.snapshotRestoreCommandFunc\n\t/tmp/etcd-release-3.5.1/etcd/release/etcd/etcdctl/ctlv3/command/snapshot_command.go:128\ngithub.com/spf13/cobra.(*Command).execute\n\t/home/remote/sbatsche/.gvm/pkgsets/go1.16.3/global/pkg/mod/github.com/spf13/cobra@v1.1.3/command.go:856\ngithub.com/spf13/cobra.(*Command).ExecuteC\n\t/home/remote/sbatsche/.gvm/pkgsets/go1.16.3/global/pkg/mod/github.com/spf13/cobra@v1.1.3/command.go:960\ngithub.com/spf13/cobra.(*Command).Execute\n\t/home/remote/sbatsche/.gvm/pkgsets/go1.16.3/global/pkg/mod/github.com/spf13/cobra@v1.1.3/command.go:897\ngo.etcd.io/etcd/etcdctl/v3/ctlv3.Start\n\t/tmp/etcd-release-3.5.1/etcd/release/etcd/etcdctl/ctlv3/ctl.go:107\ngo.etcd.io/etcd/etcdctl/v3/ctlv3.MustStart\n\t/tmp/etcd-release-3.5.1/etcd/release/etcd/etcdctl/ctlv3/ctl.go:111\nmain.main\n\t/tmp/etcd-release-3.5.1/etcd/release/etcd/etcdctl/main.go:59\nruntime.main\n\t/home/remote/sbatsche/.gvm/gos/go1.16.3/src/runtime/proc.go:225"}
+2022-06-05T20:45:10Z    info    membership/store.go:141 Trimming membership information from the backend...
+2022-06-05T20:45:10Z    info    membership/cluster.go:421       added member    {"cluster-id": "baab7a14613665bb", "local-member-id": "0", "added-peer-id": "77fb14b13d7590f7", "added-peer-peer-urls": ["http://localhost:2380"]}
+2022-06-05T20:45:10Z    info    snapshot/v3_snapshot.go:272     restored snapshot       {"path": "/opt/etcd-backup.db", "wal-dir": "/var/lib/etcd-backup/member/wal", "data-dir": "/var/lib/etcd-backup", "snap-dir": "/var/lib/etcd-backup/member/snap"}
+</pre>
 
 
 `ls -la /var/lib/etcd*`{{execute}}
@@ -124,6 +135,9 @@ CHECK
 Literature:
 
 https://kubernetes.io/docs/tasks/administer-cluster/configure-upgrade-etcd/#backing-up-an-etcd-cluster
+
+https://rudimartinsen.com/2020/12/30/backup-restore-etcd/
+
 
 
 

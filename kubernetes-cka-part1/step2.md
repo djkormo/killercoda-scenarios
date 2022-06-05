@@ -57,6 +57,18 @@ use command in such a way
   snapshot save filename
   `{{copy}}
 
+After running proper command you should see something like this:
+
+<pre>
+{"level":"info","ts":1654461278.1012843,"caller":"snapshot/v3_snapshot.go:68","msg":"created temporary db file","path":"/opt/etcd-backup.db.part"}
+{"level":"info","ts":1654461278.1084728,"logger":"client","caller":"v3/maintenance.go:211","msg":"opened snapshot stream; downloading"}
+{"level":"info","ts":1654461278.108607,"caller":"snapshot/v3_snapshot.go:76","msg":"fetching snapshot","endpoint":"https://[127.0.0.1]:2379"}
+{"level":"info","ts":1654461278.1743407,"logger":"client","caller":"v3/maintenance.go:219","msg":"completed snapshot read; closing"}
+{"level":"info","ts":1654461278.179867,"caller":"snapshot/v3_snapshot.go:91","msg":"fetched snapshot","endpoint":"https://[127.0.0.1]:2379","size":"5.8 MB","took":"now"}
+{"level":"info","ts":1654461278.1799042,"caller":"snapshot/v3_snapshot.go:100","msg":"saved","path":"/opt/etcd-backup.db"}
+Snapshot saved at /opt/etcd-backup.db
+</pre>
+
 
 **Remember the objects in default namespace**
 
