@@ -152,7 +152,7 @@ systemctl enable kubelet && systemctl start kubelet
 
 ### init k8s
 kubeadm reset -f
-rm -rf /etc/cni/net.d
+# rm -rf /etc/cni/net.d
 systemctl daemon-reload
 service kubelet start
 
