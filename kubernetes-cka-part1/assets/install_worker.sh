@@ -69,7 +69,8 @@ EOF
 apt-get update
 apt-get install -y docker.io containerd kubelet=${KUBE_VERSION}-00 kubeadm=${KUBE_VERSION}-00 kubectl=${KUBE_VERSION}-00 kubernetes-cni
 apt-mark hold kubelet kubeadm kubectl kubernetes-cni
-
+apt-get remove -y docker.io containerd kubelet kubeadm kubectl kubernetes-cni --allow-change-held-packages || true
+apt-get install -y docker.io containerd kubelet=${KUBE_VERSION}-00 kubeadm=${KUBE_VERSION}-00
 
 ### containerd
 cat <<EOF | sudo tee /etc/modules-load.d/containerd.conf

@@ -1,4 +1,4 @@
-**Step 0**
+**Step 1**
 
 Upgrade cluster from version 1.22.x to 1.23.y
 

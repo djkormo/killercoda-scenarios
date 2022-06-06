@@ -27,7 +27,7 @@ Let's download images
 
 `kubeadm config images pull --kubernetes-version $(kubeadm version -o short) `{{execute}}
 
-For example, for following command will initialise the control plane with the latest version installed.
+For example the following command will initialise the control plane with the latest version installed.
 
 `kubeadm init --kubernetes-version $(kubeadm version -o short) --pod-network-cidr 192.168.0.0/16`{{execute}}
 
@@ -47,23 +47,32 @@ sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config &&
 sudo chown $(id -u):$(id -g) $HOME/.kube/config`{{execute}}
 
 
-Now you can check your access to your k8s cluster
+From now you can check your access to your k8s cluster using kubectl
 
 `kubectl get nodes`{{execute}}
 
 <pre>
-NAME           STATUS   ROLES                  AGE     VERSION
-controlplane   Ready    control-plane,master   3m10s   v1.23.6
+NAME           STATUS     ROLES                  AGE   VERSION
+controlplane   NotReady   control-plane,master   28s   v1.22.10
 </pre>
+
 
 We are almost at the end ?
 
 Create an example deployment in default namespace:
 
- `kubectl apply -f https://raw.githubusercontent.com/kubernetes/website/master/content/en/examples/application/nginx-app.yaml`{{execute}}
+ `kubectl apply -f https://raw.githubusercontent.com/kubernetes/website/master/content/en/examples/application/nginx-app.yaml -n default `{{execute}}
 
 
 `kubectl get pod -n default`{{execute}} 
+<pre>
+NAME                        READY   STATUS    RESTARTS   AGE
+my-nginx-66b6c48dd5-45hqd   0/1     Pending   0          2s
+my-nginx-66b6c48dd5-6244g   0/1     Pending   0          2s
+my-nginx-66b6c48dd5-mjxj9   0/1     Pending   0          2s
+</pre>
+
+They all in Pending state. Let's check why.
 
 `kubectl describe pod -l app=nginx | grep Events -A5`{{execute}}
 
@@ -88,7 +97,10 @@ Events:
   Warning  FailedScheduling  15s (x4 over 3m53s)  default-scheduler  0/1 nodes are available: 1 node(s) had taint {node-role.kubernetes.io/master: }, that the pod didn't tolerate.
 </pre>
 
-Control plane node is ready. What about worker nodes?
+Control plane has a taint to keep away application workload from it.
+
+Control plane node is also not ready and what about worker nodes?
+
 
 Let's try to add worker node/nodes.
 
@@ -101,18 +113,52 @@ Return to controlplane node
 `exit`{{copy}}
 
 
-`kubectl get pod -n default`{{execute}} 
+How looks our cluster ?
+
+`kubectl get nodes`{{execute}}
+
 <pre>
-NAME                        READY   STATUS              RESTARTS   AGE
-my-nginx-66b6c48dd5-l8m6r   0/1     ContainerCreating   0          8m29s
-my-nginx-66b6c48dd5-r88c9   0/1     ContainerCreating   0          8m29s
-my-nginx-66b6c48dd5-z4szd   0/1     ContainerCreating   0          8m29s
+NAME           STATUS     ROLES                  AGE     VERSION
+controlplane   NotReady   control-plane,master   9m6s    v1.22.10
+node01         NotReady   <none>                 2m45s   v1.22.10
 </pre>
 
-`kubectl describe pod -l app=nginx | grep Events -A5`{{execute}}
+How look our pods ?
+
+`kubectl get pod -n default`{{execute}} 
+<pre>
+NAME                        READY   STATUS    RESTARTS   AGE
+my-nginx-66b6c48dd5-45hqd   0/1     Pending   0          5m30s
+my-nginx-66b6c48dd5-6244g   0/1     Pending   0          5m30s
+my-nginx-66b6c48dd5-mjxj9   0/1     Pending   0          5m30s
+</pre>
+
+`kubectl describe pod -l app=nginx | grep Events -A7`{{execute}}
 
 <pre>
-TODO 
+Events:
+  Type     Reason            Age                  From               Message
+  ----     ------            ----                 ----               -------
+  Warning  FailedScheduling  64s (x5 over 5m39s)  default-scheduler  0/1 nodes are available: 1 node(s) had taint {node-role.kubernetes.io/master: }, that the pod didn't tolerate.
+  Warning  FailedScheduling  4s                   default-scheduler  0/2 nodes are available: 1 node(s) had taint {node-role.kubernetes.io/master: }, that the pod didn't tolerate, 1 node(s) had taint {node.kubernetes.io/not-ready: }, that the pod didn't tolerate.
+
+
+Name:           my-nginx-66b6c48dd5-6244g
+--
+Events:
+  Type     Reason            Age                  From               Message
+  ----     ------            ----                 ----               -------
+  Warning  FailedScheduling  34s (x5 over 5m39s)  default-scheduler  0/1 nodes are available: 1 node(s) had taint {node-role.kubernetes.io/master: }, that the pod didn't tolerate.
+
+
+Name:           my-nginx-66b6c48dd5-mjxj9
+Namespace:      default
+--
+Events:
+  Type     Reason            Age                  From               Message
+  ----     ------            ----                 ----               -------
+  Warning  FailedScheduling  64s (x5 over 5m39s)  default-scheduler  0/1 nodes are available: 1 node(s) had taint {node-role.kubernetes.io/master: }, that the pod didn't tolerate.
+  Warning  FailedScheduling  4s                   default-scheduler  0/2 nodes are available: 1 node(s) had taint {node-role.kubernetes.io/master: }, that the pod didn't tolerate, 1 node(s) had taint {node.kubernetes.io/not-ready: }, that the pod didn't tolerate.
 </pre>
 
 We did not deploy network to kubernetes cluster!
@@ -129,9 +175,9 @@ Here we have Calico CNI
 `kubectl get pod -n default`{{execute}} 
 <pre>
 NAME                        READY   STATUS    RESTARTS   AGE
-my-nginx-66b6c48dd5-l8m6r   1/1     Running   0          13m
-my-nginx-66b6c48dd5-r88c9   1/1     Running   0          13m
-my-nginx-66b6c48dd5-z4szd   1/1     Running   0          13m
+my-nginx-66b6c48dd5-45hqd   1/1     Running   0          16m
+my-nginx-66b6c48dd5-6244g   1/1     Running   0          16m
+my-nginx-66b6c48dd5-mjxj9   1/1     Running   0          16m
 </pre>
 
 So what if do not have my token or token is invalid?

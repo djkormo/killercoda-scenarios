@@ -1,3 +1,5 @@
+**Step 2**
+
 Backup cluster k8s
 
 Backup etcd to file /opt/etcd-backup.db

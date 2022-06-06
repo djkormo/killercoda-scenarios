@@ -1,3 +1,5 @@
+**Step 3**
+
 Restore cluster k8s
 
 Restore etcd from file /opt/etcd-backup.db
